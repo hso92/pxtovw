@@ -14,7 +14,9 @@ type Props = {
 //===============================
 // @Component
 //===============================
-const Compornent: React.FC<Props> = React.memo(({...props}) => {
+const Compornent: React.FC<Props> = ({...props}) => {
+  const inputRef = React.useRef(null);
+  React.useEffect(()=>{},[inputRef]);
   return (
     <>
       <Title>px to vw</Title>
@@ -22,6 +24,7 @@ const Compornent: React.FC<Props> = React.memo(({...props}) => {
         <Item>
           <p className="title">desired value</p>
           <Input
+            ref={inputRef}
             type="number"
             onChange={props.onChangeValue}
             value={props.pxValue}
@@ -52,11 +55,7 @@ const Compornent: React.FC<Props> = React.memo(({...props}) => {
       </Wrapper>
     </>
   );
-},
-  (prevProps,nextProps)=>{
-    return prevProps.vw !== nextProps.vw
-  }
-)
+}
 //===============================
 // @Styled
 //===============================
